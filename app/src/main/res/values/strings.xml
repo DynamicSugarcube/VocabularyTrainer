@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Vocabulary Trainer</string>
+
+    <string name="show_words_string">Show Words</string>
+    <string name="add_new_word_string">Add new word</string>
+    <string name="enter_word_string">Enter your new word</string>
+    <string name="enter_translation_string">Enter its translation</string>
+    <string name="submit_string">Submit</string>
+</resources>

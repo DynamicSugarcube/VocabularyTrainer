@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/vocabularyListFragment">
+
+    <fragment
+        android:id="@+id/vocabularyListFragment"
+        android:name="com.example.vocabularytrainer.vocabularylist.VocabularyListFragment"
+        android:label="fragment_vocabulary_list"
+        tools:layout="@layout/fragment_vocabulary_list" >
+        <action
+            android:id="@+id/action_vocabularyListFragment_to_wordCreatorFragment"
+            app:destination="@id/wordCreatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordCreatorFragment"
+        android:name="com.example.vocabularytrainer.wordcreator.WordCreatorFragment"
+        android:label="fragment_word_creator"
+        tools:layout="@layout/fragment_word_creator" >
+        <action
+            android:id="@+id/action_wordCreatorFragment_to_vocabularyListFragment"
+            app:destination="@id/vocabularyListFragment" />
+    </fragment>
+</navigation>
