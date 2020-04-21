@@ -9,9 +9,9 @@ data class Lexeme(
     @PrimaryKey(autoGenerate = true)
     var wordId: Long = 0L,
 
-    @ColumnInfo
+    @ColumnInfo(name = "word")
     val word: String,
 
-    @ColumnInfo
+    @ColumnInfo(name = "translation")
     val translation: String
 )
