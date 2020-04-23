@@ -37,6 +37,8 @@ class WordCreatorFragment : Fragment() {
 
         submitButton = view.submit_button
         submitButton.setOnClickListener {
+            wordEditText.clearFocus()
+            translationEditText.clearFocus()
             viewModel.appendLexeme(
                 Lexeme(word = wordEditText.text.toString(),
                     translation = translationEditText.text.toString()))
