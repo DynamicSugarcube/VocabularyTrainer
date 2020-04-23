@@ -6,29 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.vocabularytrainer.R
-import com.example.vocabularytrainer.database.Lexeme
+import com.example.vocabularytrainer.database.VocabularyDatabase
 import kotlinx.android.synthetic.main.fragment_vocabulary_list.view.*
-
-/**
- * A vocabulary list for testing
- */
-val colors = mutableListOf(
-    Lexeme(word = "red", translation = "красный"),
-    Lexeme(word = "orange", translation = "оранжевый"),
-    Lexeme(word = "yellow", translation = "жёлтый"),
-    Lexeme(word = "green", translation = "зелёный"),
-    Lexeme(word = "blue", translation = "синий"),
-    Lexeme(word = "indigo", translation = "индиго"),
-    Lexeme(word = "violet", translation = "фиолетовый"),
-    Lexeme(word = "white", translation = "белый"),
-    Lexeme(word = "grey", translation = "серый"),
-    Lexeme(word = "black", translation = "чёрный")
-)
 
 class VocabularyListFragment : Fragment() {
 
@@ -42,8 +28,16 @@ class VocabularyListFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_vocabulary_list, container, false)
 
+        val application = requireNotNull(this.activity).application
+        val databaseDao = VocabularyDatabase.getInstance(application).vocabularyDao
+
+        val viewModelFactory = VocabularyListViewModelFactory(databaseDao)
+        val viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(VocabularyListViewModel::class.java)
+
+
         viewManager = LinearLayoutManager(this.context)
-        viewAdapter = VocabularyListAdapter(colors)
+        viewAdapter = VocabularyListAdapter()
 
         recyclerView = view.vocabulary_recycler_view.apply {
             setHasFixedSize(true)
@@ -56,6 +50,10 @@ class VocabularyListFragment : Fragment() {
             it.findNavController()
                 .navigate(R.id.action_vocabularyListFragment_to_wordCreatorFragment)
         }
+
+        viewModel.vocabulary.observe(this.viewLifecycleOwner, Observer {
+            (viewAdapter as VocabularyListAdapter).data = it
+        })
 
         return view
     }

@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 
 import com.example.vocabularytrainer.R
 import com.example.vocabularytrainer.database.Lexeme
-import com.example.vocabularytrainer.vocabularylist.colors
+import com.example.vocabularytrainer.database.VocabularyDatabase
 import kotlinx.android.synthetic.main.fragment_word_creator.view.*
 
 class WordCreatorFragment : Fragment() {
@@ -24,13 +25,21 @@ class WordCreatorFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_word_creator, container, false)
 
+        val application = requireNotNull(this.activity).application
+        val databaseDao = VocabularyDatabase.getInstance(application).vocabularyDao
+
+        val viewModelFactory = WordCreatorViewModelFactory(databaseDao)
+        val viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(WordCreatorViewModel::class.java)
+
         wordEditText = view.enter_word_text
         translationEditText = view.enter_translation_text
 
         submitButton = view.submit_button
         submitButton.setOnClickListener {
-            createLexeme(wordEditText.text.toString(),
-                translationEditText.text.toString())
+            viewModel.appendLexeme(
+                Lexeme(word = wordEditText.text.toString(),
+                    translation = translationEditText.text.toString()))
 
             it.findNavController()
                 .navigate(R.id.action_wordCreatorFragment_to_vocabularyListFragment)
@@ -38,9 +47,4 @@ class WordCreatorFragment : Fragment() {
 
         return view
     }
-
-    private fun createLexeme(word: String, translation: String) {
-        colors.add(Lexeme(word = word, translation = translation))
-    }
-
 }

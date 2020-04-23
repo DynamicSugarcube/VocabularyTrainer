@@ -8,7 +8,7 @@ import com.example.vocabularytrainer.R
 import com.example.vocabularytrainer.database.Lexeme
 import kotlinx.android.synthetic.main.list_item_lexeme.view.*
 
-class VocabularyListAdapter(private val dataset: List<Lexeme>):
+class VocabularyListAdapter():
     RecyclerView.Adapter<VocabularyListAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -34,9 +34,15 @@ class VocabularyListAdapter(private val dataset: List<Lexeme>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = dataset[position]
+        val item = data[position]
         holder.bind(item)
     }
 
-    override fun getItemCount() = dataset.size
+    override fun getItemCount() = data.size
+
+    var data = listOf<Lexeme>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 }

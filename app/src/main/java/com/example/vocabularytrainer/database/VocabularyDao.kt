@@ -1,5 +1,6 @@
 package com.example.vocabularytrainer.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -18,7 +19,7 @@ interface VocabularyDao {
     fun getWordById(key: Long): Lexeme?
 
     @Query("SELECT * FROM vocabulary_table ORDER BY wordId DESC")
-    fun getFullVocabulary(): List<Lexeme>?
+    fun getFullVocabulary(): LiveData<List<Lexeme>>
 
     @Query("DELETE FROM vocabulary_table")
     fun clean()
