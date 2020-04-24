@@ -3,9 +3,12 @@
 
     <string name="show_words_string">Show Words</string>
     <string name="add_new_word_string">Add new word</string>
+
+    <!-- Word Creator Strings -->
     <string name="enter_word_string">Enter your new word</string>
     <string name="enter_translation_string">Enter its translation</string>
     <string name="submit_string">Submit</string>
+    <string name="word_created_string">Word created!</string>
 
     <!-- Delete Word Dialog Strings -->
     <string name="dialog_delete_word_string">Delete this word?</string>

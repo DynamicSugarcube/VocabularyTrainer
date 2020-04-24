@@ -1,12 +1,14 @@
 package com.example.vocabularytrainer.wordcreator
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 
@@ -21,6 +23,8 @@ class WordCreatorFragment : Fragment() {
     private lateinit var translationEditText: EditText
     private lateinit var submitButton: Button
 
+    private lateinit var viewModel: WordCreatorViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_word_creator, container, false)
@@ -29,7 +33,7 @@ class WordCreatorFragment : Fragment() {
         val databaseDao = VocabularyDatabase.getInstance(application).vocabularyDao
 
         val viewModelFactory = WordCreatorViewModelFactory(databaseDao)
-        val viewModel = ViewModelProvider(this, viewModelFactory)
+        viewModel = ViewModelProvider(this, viewModelFactory)
             .get(WordCreatorViewModel::class.java)
 
         wordEditText = view.enter_word_text
@@ -37,16 +41,24 @@ class WordCreatorFragment : Fragment() {
 
         submitButton = view.submit_button
         submitButton.setOnClickListener {
-            wordEditText.clearFocus()
-            translationEditText.clearFocus()
-            viewModel.appendLexeme(
-                Lexeme(word = wordEditText.text.toString(),
-                    translation = translationEditText.text.toString()))
-
-            it.findNavController()
-                .navigate(R.id.action_wordCreatorFragment_to_vocabularyListFragment)
+            createNewWord()
         }
 
         return view
+    }
+
+    private fun createNewWord() {
+        viewModel.appendLexeme(Lexeme(word = wordEditText.text.toString(),
+            translation = translationEditText.text.toString()))
+
+        with (Toast.makeText(context, R.string.word_created_string, Toast.LENGTH_LONG)) {
+            setGravity(Gravity.CENTER, 0, 0)
+            show()
+        }
+
+        wordEditText.text.clear()
+        translationEditText.text.clear()
+
+        wordEditText.requestFocus()
     }
 }

@@ -18,9 +18,5 @@
         android:id="@+id/wordCreatorFragment"
         android:name="com.example.vocabularytrainer.wordcreator.WordCreatorFragment"
         android:label="fragment_word_creator"
-        tools:layout="@layout/fragment_word_creator" >
-        <action
-            android:id="@+id/action_wordCreatorFragment_to_vocabularyListFragment"
-            app:destination="@id/vocabularyListFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_word_creator" />
 </navigation>
