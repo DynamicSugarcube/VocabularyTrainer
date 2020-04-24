@@ -6,4 +6,9 @@
     <string name="enter_word_string">Enter your new word</string>
     <string name="enter_translation_string">Enter its translation</string>
     <string name="submit_string">Submit</string>
+
+    <!-- Delete Word Dialog Strings -->
+    <string name="dialog_delete_word_string">Delete this word?</string>
+    <string name="delete_string">Delete</string>
+    <string name="cancel_string">Cancel</string>
 </resources>

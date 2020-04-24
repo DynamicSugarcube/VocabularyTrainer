@@ -37,7 +37,7 @@ class VocabularyListFragment : Fragment() {
 
 
         viewManager = LinearLayoutManager(this.context)
-        viewAdapter = VocabularyListAdapter()
+        viewAdapter = VocabularyListAdapter(viewModel)
 
         recyclerView = view.vocabulary_recycler_view.apply {
             setHasFixedSize(true)
