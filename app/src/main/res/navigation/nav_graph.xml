@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/vocabularyListFragment">
+    app:startDestination="@id/vocabularyTrainerFragment">
 
     <fragment
         android:id="@+id/vocabularyListFragment"
@@ -19,4 +19,13 @@
         android:name="com.example.vocabularytrainer.wordcreator.WordCreatorFragment"
         android:label="fragment_word_creator"
         tools:layout="@layout/fragment_word_creator" />
+    <fragment
+        android:id="@+id/vocabularyTrainerFragment"
+        android:name="com.example.vocabularytrainer.vocabularytrainer.VocabularyTrainerFragment"
+        android:label="fragment_vocabulary_trainer"
+        tools:layout="@layout/fragment_vocabulary_trainer" >
+        <action
+            android:id="@+id/action_vocabularyTrainerFragment_to_vocabularyListFragment"
+            app:destination="@id/vocabularyListFragment" />
+    </fragment>
 </navigation>

@@ -29,6 +29,13 @@ interface VocabularyDao {
     fun getWordById(key: Long): Lexeme?
 
     /**
+     * Fetch a random word from the table
+     * @return a random word
+     */
+    @Query("SELECT * FROM vocabulary_table ORDER BY RANDOM() LIMIT 1")
+    suspend fun getRandomWord(): Lexeme
+
+    /**
      * Fetch all words from the table
      * @return a list of all words
      */
