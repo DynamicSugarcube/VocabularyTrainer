@@ -5,17 +5,19 @@ import com.example.vocabularytrainer.database.Lexeme
 import com.example.vocabularytrainer.database.VocabularyDao
 import kotlinx.coroutines.*
 
+/**
+ * ViewModel for WordCreatorFragment
+ */
 class WordCreatorViewModel(private val databaseDao: VocabularyDao): ViewModel() {
 
-    fun appendLexeme(lexeme: Lexeme) {
-        GlobalScope.launch {
-            insert(lexeme)
-        }
-    }
-
-    private suspend fun insert(lexeme: Lexeme) {
-        withContext(Dispatchers.IO) {
+    /**
+     * Insert a provided word into the database
+     * @param lexeme is a word to insert
+     */
+    fun appendLexeme(lexeme: Lexeme) = runBlocking {
+        val job = launch {
             databaseDao.insert(lexeme)
         }
+        job.join()
     }
 }

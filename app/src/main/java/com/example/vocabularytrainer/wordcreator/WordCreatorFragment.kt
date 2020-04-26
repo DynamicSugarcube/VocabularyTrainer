@@ -10,13 +10,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 
 import com.example.vocabularytrainer.R
 import com.example.vocabularytrainer.database.Lexeme
 import com.example.vocabularytrainer.database.VocabularyDatabase
 import kotlinx.android.synthetic.main.fragment_word_creator.view.*
 
+/**
+ * Fragment that displays UI which allows users to create their own words
+ */
 class WordCreatorFragment : Fragment() {
 
     private lateinit var wordEditText: EditText
@@ -47,18 +49,49 @@ class WordCreatorFragment : Fragment() {
         return view
     }
 
-    private fun createNewWord() {
-        viewModel.appendLexeme(Lexeme(word = wordEditText.text.toString(),
-            translation = translationEditText.text.toString()))
-
-        with (Toast.makeText(context, R.string.word_created_string, Toast.LENGTH_LONG)) {
-            setGravity(Gravity.CENTER, 0, 0)
-            show()
+    /**
+     * Check if the entered word is not null
+     * @return true if editText texts are not empty, false otherwise
+     */
+    private fun checkWordNotNull(): Boolean {
+        if (wordEditText.text.isNotEmpty() && translationEditText.text.isNotEmpty()) {
+            return true
         }
+        return false
+    }
 
+    /**
+     * Clear EditText texts and focus on wordEditText
+     */
+    private fun resetFields() {
         wordEditText.text.clear()
         translationEditText.text.clear()
 
         wordEditText.requestFocus()
+    }
+
+    /**
+     * Create and insert a word into the database if it is possible.
+     * Otherwise, make a toast notifying that there is nothing to submit
+     */
+    private fun createNewWord() {
+        val toast = Toast.makeText(context, R.string.nothing_submit_toast, Toast.LENGTH_LONG)
+
+        if (checkWordNotNull()) {
+            viewModel.appendLexeme(
+                Lexeme(
+                    word = wordEditText.text.toString(),
+                    translation = translationEditText.text.toString()
+                )
+            )
+            toast.setText(R.string.word_created_toast)
+        }
+
+        with(toast) {
+            setGravity(Gravity.CENTER, 0, 0)
+            show()
+        }
+
+        resetFields()
     }
 }

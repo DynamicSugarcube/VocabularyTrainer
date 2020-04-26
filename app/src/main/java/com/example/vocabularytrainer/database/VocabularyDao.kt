@@ -18,7 +18,7 @@ interface VocabularyDao {
      * @return the primary key of this word
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(lexeme: Lexeme): Long
+    suspend fun insert(lexeme: Lexeme): Long
 
     /**
      * Fetch a word with the provided id

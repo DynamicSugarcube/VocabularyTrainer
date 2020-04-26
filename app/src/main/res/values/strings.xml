@@ -8,7 +8,8 @@
     <string name="enter_word_string">Enter a word</string>
     <string name="enter_translation_string">Enter translation</string>
     <string name="submit_string">Submit</string>
-    <string name="word_created_string">Word created!</string>
+    <string name="nothing_submit_toast">Nothing to submit</string>
+    <string name="word_created_toast">Word created!</string>
 
     <!-- Delete Word Dialog Strings -->
     <string name="dialog_delete_word_string">Delete this word?</string>
