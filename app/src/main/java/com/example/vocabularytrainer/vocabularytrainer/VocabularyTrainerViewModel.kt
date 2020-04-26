@@ -18,8 +18,8 @@ class VocabularyTrainerViewModel(private val databaseDao: VocabularyDao): ViewMo
     /**
      * The value contains the current word to translate
      */
-    private val _currentWord = MutableLiveData<Lexeme>()
-    val currentWord: LiveData<Lexeme>
+    private val _currentWord = MutableLiveData<Lexeme?>()
+    val currentWord: LiveData<Lexeme?>
         get() = _currentWord
 
     init {
@@ -64,7 +64,7 @@ class VocabularyTrainerViewModel(private val databaseDao: VocabularyDao): ViewMo
      * Fetch a random word from the database
      * @return a random word from the table
      */
-    private fun getRandomWord(): Lexeme {
+    private fun getRandomWord(): Lexeme? {
         return runBlocking {
             val lexeme = databaseDao.getRandomWord()
             Log.d(TAG, "Next word is $lexeme")

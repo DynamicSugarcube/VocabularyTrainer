@@ -57,7 +57,7 @@ class VocabularyTrainerFragment : Fragment() {
         }
 
         viewModel.currentWord.observe(viewLifecycleOwner, Observer {
-            wordTextView.text = it.word
+            wordTextView.text = it?.word
         })
 
         return view

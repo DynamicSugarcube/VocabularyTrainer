@@ -33,7 +33,7 @@ interface VocabularyDao {
      * @return a random word
      */
     @Query("SELECT * FROM vocabulary_table ORDER BY RANDOM() LIMIT 1")
-    suspend fun getRandomWord(): Lexeme
+    suspend fun getRandomWord(): Lexeme?
 
     /**
      * Fetch all words from the table
