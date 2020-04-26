@@ -23,7 +23,7 @@ class VocabularyTrainerViewModel(private val databaseDao: VocabularyDao): ViewMo
         get() = _currentWord
 
     init {
-        _currentWord.value = getRandomWord()
+        updateWord()
     }
 
     companion object {
@@ -56,19 +56,11 @@ class VocabularyTrainerViewModel(private val databaseDao: VocabularyDao): ViewMo
     /**
      * Update the current word to the next one
      */
-    private fun updateWord() {
-        _currentWord.value = getRandomWord()
-    }
-
-    /**
-     * Fetch a random word from the database
-     * @return a random word from the table
-     */
-    private fun getRandomWord(): Lexeme? {
-        return runBlocking {
-            val lexeme = databaseDao.getRandomWord()
-            Log.d(TAG, "Next word is $lexeme")
-            lexeme
+    private fun updateWord() = runBlocking {
+        val job = launch {
+            _currentWord.value = databaseDao.getRandomWord()
         }
+        job.join()
+        Log.d(TAG, "Next word is ${currentWord.value.toString()}")
     }
 }
