@@ -16,6 +16,9 @@ import com.example.vocabularytrainer.R
 import com.example.vocabularytrainer.database.VocabularyDatabase
 import kotlinx.android.synthetic.main.fragment_vocabulary_list.view.*
 
+/**
+ * Fragment that displays full user's dictionary
+ */
 class VocabularyListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView

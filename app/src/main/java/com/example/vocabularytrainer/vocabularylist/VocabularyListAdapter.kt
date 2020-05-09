@@ -10,9 +10,15 @@ import com.example.vocabularytrainer.R
 import com.example.vocabularytrainer.database.Lexeme
 import kotlinx.android.synthetic.main.list_item_lexeme.view.*
 
+/**
+ * Adapter for VocabularyList's RecyclerView
+ */
 class VocabularyListAdapter(private val viewModel: VocabularyListViewModel):
     RecyclerView.Adapter<VocabularyListAdapter.ViewHolder>() {
 
+    /**
+     * ViewHolder for VocabularyListAdapter
+     */
     class ViewHolder(itemView: View,
                      private val viewModel: VocabularyListViewModel):
         RecyclerView.ViewHolder(itemView) {
@@ -31,6 +37,9 @@ class VocabularyListAdapter(private val viewModel: VocabularyListViewModel):
         }
 
         companion object {
+            /**
+             * Creates an instance of ViewHolder
+             */
             fun from(parent: ViewGroup, viewModel: VocabularyListViewModel): ViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.list_item_lexeme, parent, false)
@@ -38,6 +47,9 @@ class VocabularyListAdapter(private val viewModel: VocabularyListViewModel):
             }
         }
 
+        /**
+         * Shows a dialog when deleting words
+         */
         private fun showDeleteWordDialog(wordId: Long, context: Context) {
             val builder = AlertDialog.Builder(context)
 

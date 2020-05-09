@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.vocabularytrainer.database.VocabularyDao
 import java.lang.IllegalArgumentException
 
+/**
+ * ViewModel Factory for VocabularyListViewModel
+ */
 class VocabularyListViewModelFactory(
     private val databaseDao: VocabularyDao): ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
