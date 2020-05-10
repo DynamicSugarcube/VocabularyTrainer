@@ -1,4 +1,4 @@
-package com.example.vocabularytrainer.vocabularylist
+package com.example.vocabularytrainer.presentation.viewmodel.vocabularylist
 
 import androidx.lifecycle.ViewModel
 import com.example.vocabularytrainer.database.VocabularyDao

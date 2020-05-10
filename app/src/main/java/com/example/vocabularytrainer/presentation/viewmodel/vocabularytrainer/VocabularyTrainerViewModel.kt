@@ -1,4 +1,4 @@
-package com.example.vocabularytrainer.vocabularytrainer
+package com.example.vocabularytrainer.presentation.viewmodel.vocabularytrainer
 
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -34,7 +34,10 @@ class VocabularyTrainerViewModel(private val databaseDao: VocabularyDao): ViewMo
         fun createViewModel(fragment: Fragment): VocabularyTrainerViewModel {
             val application = requireNotNull(fragment.activity).application
             val databaseDao = VocabularyDatabase.getInstance(application).vocabularyDao
-            val viewModelFactory = VocabularyTrainerViewModelFactory(databaseDao)
+            val viewModelFactory =
+                VocabularyTrainerViewModelFactory(
+                    databaseDao
+                )
             return ViewModelProvider(fragment, viewModelFactory)
                 .get(VocabularyTrainerViewModel::class.java)
         }

@@ -1,4 +1,4 @@
-package com.example.vocabularytrainer.vocabularytrainer
+package com.example.vocabularytrainer.presentation.viewmodel.vocabularytrainer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +13,9 @@ class VocabularyTrainerViewModelFactory(
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(VocabularyTrainerViewModel::class.java)) {
-            return VocabularyTrainerViewModel(databaseDao) as T
+            return VocabularyTrainerViewModel(
+                databaseDao
+            ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

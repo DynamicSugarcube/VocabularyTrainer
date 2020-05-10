@@ -1,4 +1,4 @@
-package com.example.vocabularytrainer.vocabularytrainer
+package com.example.vocabularytrainer.presentation.view.vocabularytrainer
 
 import android.os.Bundle
 import android.view.Gravity
@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 
 import com.example.vocabularytrainer.R
+import com.example.vocabularytrainer.presentation.viewmodel.vocabularytrainer.VocabularyTrainerViewModel
 import kotlinx.android.synthetic.main.fragment_vocabulary_trainer.view.*
 
 /**
@@ -33,7 +34,10 @@ class VocabularyTrainerFragment : Fragment() {
         savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_vocabulary_trainer, container, false)
 
-        viewModel = VocabularyTrainerViewModel.createViewModel(this)
+        viewModel =
+            VocabularyTrainerViewModel.createViewModel(
+                this
+            )
 
         wordTextView = view.word_text
         translationEditText = view.enter_translation_text

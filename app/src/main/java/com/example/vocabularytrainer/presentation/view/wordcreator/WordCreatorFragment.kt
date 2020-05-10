@@ -1,4 +1,4 @@
-package com.example.vocabularytrainer.wordcreator
+package com.example.vocabularytrainer.presentation.view.wordcreator
 
 import android.os.Bundle
 import android.view.Gravity
@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.vocabularytrainer.R
 import com.example.vocabularytrainer.database.Lexeme
 import com.example.vocabularytrainer.database.VocabularyDatabase
+import com.example.vocabularytrainer.presentation.viewmodel.wordcreator.WordCreatorViewModel
+import com.example.vocabularytrainer.presentation.viewmodel.wordcreator.WordCreatorViewModelFactory
 import kotlinx.android.synthetic.main.fragment_word_creator.view.*
 
 /**
@@ -34,7 +36,10 @@ class WordCreatorFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val databaseDao = VocabularyDatabase.getInstance(application).vocabularyDao
 
-        val viewModelFactory = WordCreatorViewModelFactory(databaseDao)
+        val viewModelFactory =
+            WordCreatorViewModelFactory(
+                databaseDao
+            )
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(WordCreatorViewModel::class.java)
 

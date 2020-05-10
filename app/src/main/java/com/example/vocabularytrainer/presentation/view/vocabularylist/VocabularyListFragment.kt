@@ -1,4 +1,4 @@
-package com.example.vocabularytrainer.vocabularylist
+package com.example.vocabularytrainer.presentation.view.vocabularylist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.example.vocabularytrainer.R
 import com.example.vocabularytrainer.database.VocabularyDatabase
+import com.example.vocabularytrainer.presentation.viewmodel.vocabularylist.VocabularyListViewModel
+import com.example.vocabularytrainer.presentation.viewmodel.vocabularylist.VocabularyListViewModelFactory
 import kotlinx.android.synthetic.main.fragment_vocabulary_list.view.*
 
 /**
@@ -34,13 +36,19 @@ class VocabularyListFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val databaseDao = VocabularyDatabase.getInstance(application).vocabularyDao
 
-        val viewModelFactory = VocabularyListViewModelFactory(databaseDao)
+        val viewModelFactory =
+            VocabularyListViewModelFactory(
+                databaseDao
+            )
         val viewModel = ViewModelProvider(this, viewModelFactory)
             .get(VocabularyListViewModel::class.java)
 
 
         viewManager = LinearLayoutManager(this.context)
-        viewAdapter = VocabularyListAdapter(viewModel)
+        viewAdapter =
+            VocabularyListAdapter(
+                viewModel
+            )
 
         recyclerView = view.vocabulary_recycler_view.apply {
             setHasFixedSize(true)

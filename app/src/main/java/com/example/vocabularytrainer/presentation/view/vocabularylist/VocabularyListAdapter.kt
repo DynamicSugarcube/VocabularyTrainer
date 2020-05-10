@@ -1,4 +1,4 @@
-package com.example.vocabularytrainer.vocabularylist
+package com.example.vocabularytrainer.presentation.view.vocabularylist
 
 import android.app.AlertDialog
 import android.content.Context
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vocabularytrainer.R
 import com.example.vocabularytrainer.database.Lexeme
+import com.example.vocabularytrainer.presentation.viewmodel.vocabularylist.VocabularyListViewModel
 import kotlinx.android.synthetic.main.list_item_lexeme.view.*
 
 /**
@@ -20,7 +21,8 @@ class VocabularyListAdapter(private val viewModel: VocabularyListViewModel):
      * ViewHolder for VocabularyListAdapter
      */
     class ViewHolder(itemView: View,
-                     private val viewModel: VocabularyListViewModel):
+                     private val viewModel: VocabularyListViewModel
+    ):
         RecyclerView.ViewHolder(itemView) {
 
         private val wordText = itemView.word_text
@@ -43,7 +45,10 @@ class VocabularyListAdapter(private val viewModel: VocabularyListViewModel):
             fun from(parent: ViewGroup, viewModel: VocabularyListViewModel): ViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.list_item_lexeme, parent, false)
-                return ViewHolder(view, viewModel)
+                return ViewHolder(
+                    view,
+                    viewModel
+                )
             }
         }
 
@@ -67,7 +72,10 @@ class VocabularyListAdapter(private val viewModel: VocabularyListViewModel):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent, viewModel)
+        return ViewHolder.from(
+            parent,
+            viewModel
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

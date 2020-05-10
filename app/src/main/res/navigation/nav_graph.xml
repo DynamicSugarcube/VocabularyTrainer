@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/vocabularyListFragment"
-        android:name="com.example.vocabularytrainer.vocabularylist.VocabularyListFragment"
+        android:name="com.example.vocabularytrainer.presentation.view.vocabularylist.VocabularyListFragment"
         android:label="fragment_vocabulary_list"
         tools:layout="@layout/fragment_vocabulary_list" >
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/wordCreatorFragment"
-        android:name="com.example.vocabularytrainer.wordcreator.WordCreatorFragment"
+        android:name="com.example.vocabularytrainer.presentation.view.wordcreator.WordCreatorFragment"
         android:label="fragment_word_creator"
         tools:layout="@layout/fragment_word_creator" />
     <fragment
         android:id="@+id/vocabularyTrainerFragment"
-        android:name="com.example.vocabularytrainer.vocabularytrainer.VocabularyTrainerFragment"
+        android:name="com.example.vocabularytrainer.presentation.view.vocabularytrainer.VocabularyTrainerFragment"
         android:label="fragment_vocabulary_trainer"
         tools:layout="@layout/fragment_vocabulary_trainer" >
         <action

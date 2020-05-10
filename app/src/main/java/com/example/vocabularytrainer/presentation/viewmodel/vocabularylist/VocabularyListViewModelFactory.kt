@@ -1,4 +1,4 @@
-package com.example.vocabularytrainer.wordcreator
+package com.example.vocabularytrainer.presentation.viewmodel.vocabularylist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -6,14 +6,16 @@ import com.example.vocabularytrainer.database.VocabularyDao
 import java.lang.IllegalArgumentException
 
 /**
- * ViewModel Factory for WordCreatorViewModel
+ * ViewModel Factory for VocabularyListViewModel
  */
-class WordCreatorViewModelFactory (
+class VocabularyListViewModelFactory(
     private val databaseDao: VocabularyDao): ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(WordCreatorViewModel::class.java)) {
-            return WordCreatorViewModel(databaseDao) as T
+        if (modelClass.isAssignableFrom(VocabularyListViewModel::class.java)) {
+            return VocabularyListViewModel(
+                databaseDao
+            ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

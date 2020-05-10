@@ -1,4 +1,4 @@
-package com.example.vocabularytrainer.wordcreator
+package com.example.vocabularytrainer.presentation.viewmodel.wordcreator
 
 import androidx.lifecycle.ViewModel
 import com.example.vocabularytrainer.database.Lexeme
