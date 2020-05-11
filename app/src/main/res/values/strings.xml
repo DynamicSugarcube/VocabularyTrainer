@@ -20,4 +20,8 @@
     <string name="check_string">Check</string>
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>
+
+    <string name="vocabulary_trainer_string">Trainer</string>
+    <string name="vocabulary_list_string">My Words</string>
+    <string name="word_creator_string">Creating</string>
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/vocabulary_trainer_dest"
+        android:enabled="true"
+        android:title="@string/vocabulary_trainer_string"
+        android:icon="@drawable/baseline_school_24"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/vocabulary_list_dest"
+        android:enabled="true"
+        android:title="@string/vocabulary_list_string"
+        android:icon="@drawable/baseline_book_24"
+        app:showAsAction="ifRoom" />
+
+</menu>

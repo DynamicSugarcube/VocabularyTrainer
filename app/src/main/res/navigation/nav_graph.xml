@@ -3,29 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/vocabularyTrainerFragment">
+    app:startDestination="@id/vocabulary_trainer_dest">
 
     <fragment
-        android:id="@+id/vocabularyListFragment"
+        android:id="@+id/vocabulary_list_dest"
         android:name="com.example.vocabularytrainer.presentation.view.vocabularylist.VocabularyListFragment"
         android:label="fragment_vocabulary_list"
         tools:layout="@layout/fragment_vocabulary_list" >
         <action
             android:id="@+id/action_vocabularyListFragment_to_wordCreatorFragment"
-            app:destination="@id/wordCreatorFragment" />
+            app:destination="@id/word_creator_dest" />
     </fragment>
     <fragment
-        android:id="@+id/wordCreatorFragment"
+        android:id="@+id/word_creator_dest"
         android:name="com.example.vocabularytrainer.presentation.view.wordcreator.WordCreatorFragment"
         android:label="fragment_word_creator"
         tools:layout="@layout/fragment_word_creator" />
     <fragment
-        android:id="@+id/vocabularyTrainerFragment"
+        android:id="@+id/vocabulary_trainer_dest"
         android:name="com.example.vocabularytrainer.presentation.view.vocabularytrainer.VocabularyTrainerFragment"
         android:label="fragment_vocabulary_trainer"
         tools:layout="@layout/fragment_vocabulary_trainer" >
         <action
             android:id="@+id/action_vocabularyTrainerFragment_to_vocabularyListFragment"
-            app:destination="@id/vocabularyListFragment" />
+            app:destination="@id/vocabulary_list_dest" />
     </fragment>
 </navigation>
