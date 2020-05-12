@@ -61,7 +61,7 @@ class VocabularyListAdapter(private val viewModel: VocabularyListViewModel):
             with(builder) {
                 setMessage(R.string.dialog_delete_word_string)
                 setPositiveButton(R.string.delete_string) { dialog, which ->
-                    viewModel.onRemoveWord(wordId)
+                    viewModel.removeWord(wordId)
                 }
                 setNegativeButton(R.string.cancel_string) { dialog, which ->
                     // do nothing

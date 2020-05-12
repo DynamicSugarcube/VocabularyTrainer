@@ -1,40 +1,30 @@
 package com.example.vocabularytrainer.presentation.viewmodel.vocabularylist
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.vocabularytrainer.database.VocabularyDao
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 /**
  * ViewModel for VocabularyListFragment
  */
-class VocabularyListViewModel(private val databaseDao: VocabularyDao): ViewModel() {
+class VocabularyListViewModel(private val databaseDao: VocabularyDao) : ViewModel() {
+
+    private val tag = "VocabularyList"
 
     /**
      * The value contains all words from the database
      */
-    val vocabulary = databaseDao.getFullVocabulary()
+    val vocabulary = runBlocking {
+        databaseDao.getFullVocabulary()
+    }
 
     /**
      * Launch the coroutine to remove a word with the provided id
      * @param wordId is a word's id in the table
      */
-    fun onRemoveWord(wordId: Long) {
-        GlobalScope.launch {
-            removeWordById(wordId)
-        }
-    }
-
-    /**
-     * Delete the word with provided id
-     * It encapsulates the DAO removeWordById method in a suspend function
-     * @param wordId is a word's id in the table
-     */
-    private suspend fun removeWordById(wordId: Long) {
-        withContext(Dispatchers.IO) {
-            databaseDao.removeWordById(wordId)
-        }
+    fun removeWord(wordId: Long) = GlobalScope.launch {
+        Log.d(tag, "Removing word with $wordId")
+        withContext(Dispatchers.IO) { databaseDao.removeWordById(wordId) }
     }
 }

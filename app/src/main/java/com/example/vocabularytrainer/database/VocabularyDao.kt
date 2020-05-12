@@ -18,7 +18,7 @@ interface VocabularyDao {
      * @return the primary key of this word
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(lexeme: Lexeme): Long
+    fun insert(lexeme: Lexeme): Long
 
     /**
      * Fetch a word with the provided id
@@ -33,7 +33,7 @@ interface VocabularyDao {
      * @return a random word
      */
     @Query("SELECT * FROM vocabulary_table ORDER BY RANDOM() LIMIT 1")
-    suspend fun getRandomWord(): Lexeme?
+    fun getRandomWord(): Lexeme?
 
     /**
      * Fetch all words from the table

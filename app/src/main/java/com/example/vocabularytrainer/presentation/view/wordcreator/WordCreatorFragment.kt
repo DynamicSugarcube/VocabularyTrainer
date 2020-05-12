@@ -83,7 +83,7 @@ class WordCreatorFragment : Fragment() {
         val toast = Toast.makeText(context, R.string.nothing_submit_toast, Toast.LENGTH_LONG)
 
         if (checkWordNotNull()) {
-            viewModel.appendLexeme(
+            viewModel.insert(
                 Lexeme(
                     word = wordEditText.text.toString(),
                     translation = translationEditText.text.toString()

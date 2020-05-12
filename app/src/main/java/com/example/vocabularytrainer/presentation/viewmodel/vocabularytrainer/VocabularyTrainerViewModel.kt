@@ -13,7 +13,7 @@ import kotlinx.coroutines.*
  */
 class VocabularyTrainerViewModel(private val databaseDao: VocabularyDao): ViewModel() {
 
-    private val TAG = "VocabularyTrainer"
+    private val tag = "VocabularyTrainer"
 
     /**
      * The value contains the current word to translate
@@ -60,10 +60,7 @@ class VocabularyTrainerViewModel(private val databaseDao: VocabularyDao): ViewMo
      * Update the current word to the next one
      */
     private fun updateWord() = runBlocking {
-        val job = launch {
-            _currentWord.value = databaseDao.getRandomWord()
-        }
-        job.join()
-        Log.d(TAG, "Next word is ${currentWord.value.toString()}")
+        _currentWord.value = withContext(Dispatchers.IO) { databaseDao.getRandomWord() }
+        Log.d(tag, "Next word is ${currentWord.value.toString()}")
     }
 }
