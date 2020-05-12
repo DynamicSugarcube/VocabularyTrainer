@@ -16,6 +16,7 @@ import com.example.vocabularytrainer.R
 import com.example.vocabularytrainer.database.VocabularyDatabase
 import com.example.vocabularytrainer.presentation.viewmodel.vocabularylist.VocabularyListViewModel
 import com.example.vocabularytrainer.presentation.viewmodel.vocabularylist.VocabularyListViewModelFactory
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_vocabulary_list.view.*
 
 /**
@@ -27,7 +28,7 @@ class VocabularyListFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
-    private lateinit var addNewWordButton: Button
+    private lateinit var addNewWordButton: FloatingActionButton
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
